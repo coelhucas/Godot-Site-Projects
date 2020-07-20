@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Scenes/Door/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Scenes/Key/Key.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 96, 16 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 208, 16 )
+
+[node name="Game" type="Node"]
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Player" parent="World" instance=ExtResource( 1 )]
+position = Vector2( 16, 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World"]
+position = Vector2( 0, 128 )
+
+[node name="ColorRect" type="ColorRect" parent="World/StaticBody2D"]
+margin_right = 192.0
+margin_bottom = 32.0
+color = Color( 0.768627, 0.768627, 0.768627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D"]
+position = Vector2( 96, 16 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="World"]
+position = Vector2( 364, 128 )
+
+[node name="ColorRect" type="ColorRect" parent="World/StaticBody2D2"]
+margin_left = -108.0
+margin_right = 308.0
+margin_bottom = 32.0
+color = Color( 0.768627, 0.768627, 0.768627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/StaticBody2D2"]
+position = Vector2( 100, 16 )
+shape = SubResource( 2 )
+
+[node name="Key" parent="World" instance=ExtResource( 3 )]
+position = Vector2( 346, 90 )
+
+[node name="Door" parent="World" instance=ExtResource( 2 )]
+position = Vector2( 192, 128 )
